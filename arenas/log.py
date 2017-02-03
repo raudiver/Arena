@@ -24,7 +24,7 @@ class Log(object):
         print(message)
 
     def _arena_status(self, message):
-        self.print(message='Arena: {0}'.format(message),
+        self.print(message='\tArena: {0}'.format(message),
                    decorator=Styles.OKBLUE)
 
     def hit(self, unit, attacked):
@@ -38,7 +38,7 @@ class Log(object):
                                                              attacked.name))
 
     def _unit_speech(self, unit, decorator):
-        self.print(message='{}: {}'.format(unit.name,
+        self.print(message='\t{}: {}'.format(unit.name,
                                            unit.say()),
                    decorator=decorator)
 
@@ -51,7 +51,7 @@ class Log(object):
                           decorator=Styles.WARNING)
 
     def _unit_down(self, unit, message):
-        self.print(message='{}: {}'.format(unit.name,
+        self.print(message='\t{}: {}'.format(unit.name,
                                            message),
 
                    decorator=Styles.FAIL)
@@ -65,7 +65,7 @@ class Log(object):
                         message='Is over...')
 
     def round_start(self, round):
-        self.print('\n<<< Round {} >>>'.format(round), Styles.BOLD)
+        self.print('\n\t<<< Round {} >>>'.format(round), Styles.BOLD)
 
     def end_fight(self):
         self.print('Fight ended!')
@@ -73,3 +73,7 @@ class Log(object):
     def dice_status(self, unit, value):
         self.print('\t {}: dice result {}'.format(unit.name,
                                                   value))
+
+    def stair(self, value):
+        self.print(message='Stair {}'.format(value),
+                   decorator=Styles.BOLD)
