@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import random
+
+
 class Unit(object):
     # TODO: Add equipment
-    def __init__(self, name, health, damage, dodge, acc):
+    def __init__(self, name, health, damage, dodge, acc, speech):
         self._name = name
         self._health = health
         self._damage = damage
         self._dodge = dodge
         self._acc = acc
+        self._speech = speech
 
     @property
     def name(self):
@@ -41,6 +45,9 @@ class Unit(object):
                                                                    self._damage,
                                                                    self._dodge,
                                                                    self._acc)
+
+    def say(self):
+        return self._speech[random.randint(0, len(self._speech)-1)]
 
     def hit(self, damage):
         self._health -= damage
