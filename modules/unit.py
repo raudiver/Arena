@@ -3,6 +3,9 @@
 
 import random
 
+DAMAGE_FACTOR = 0.12
+DODGE_FACTOR = 0.02
+
 
 class Unit(object):
     # TODO: Add equipment
@@ -13,6 +16,7 @@ class Unit(object):
         self._dodge = dodge
         self._acc = acc
         self._speech = speech
+        self._experience = 1
 
     @property
     def name(self):
@@ -28,11 +32,11 @@ class Unit(object):
 
     @property
     def damage(self):
-        return self._damage
+        return self._damage * (self._experience * DAMAGE_FACTOR)
 
     @property
     def dodge(self):
-        return self._dodge
+        return self._dodge * (self._experience * DODGE_FACTOR)
 
     @property
     def acc(self):
@@ -47,7 +51,10 @@ class Unit(object):
                                                                    self._acc)
 
     def say(self):
-        return self._speech[random.randint(0, len(self._speech)-1)]
+        return self._speech[random.randint(0, len(self._speech) - 1)]
 
     def hit(self, damage):
         self._health -= damage
+
+    def add_experience(self, value):
+        self._experience += value

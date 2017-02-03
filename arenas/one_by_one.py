@@ -4,6 +4,9 @@
 import random
 import time
 
+SUCCESS_HIT_EXPERIENCE_VALUE = 12
+MISS_HIT_EXPERIENCE_VALUE = 7
+
 
 class Dice(object):
     side = range(1, 6)
@@ -16,13 +19,17 @@ class Dice(object):
 def default_attack(unit, attacked, dice_value, log):
     if unit.alive and attacked.alive:
         actual_acc = unit.acc + dice_value
+
         time.sleep(2)
         if actual_acc > attacked.dodge:
             attacked.hit(unit.damage)
 
+            unit.add_experience(SUCCESS_HIT_EXPERIENCE_VALUE)
             log.hit(unit, attacked)
         else:
             time.sleep(2)
+
+            unit.add_experience(MISS_HIT_EXPERIENCE_VALUE)
             log.miss(unit, attacked)
 
 
