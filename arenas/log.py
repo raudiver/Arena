@@ -34,9 +34,8 @@ class Log(object):
                                                                                       attacked.health))
 
     def miss(self, unit, attacked):
-        self.print(message='{} missed on {}!'.format(unit.name,
-                                                     attacked.name),
-                   decorator=Styles.BOLD)
+        self._arena_status(message='{} missed on {}!'.format(unit.name,
+                                                             attacked.name))
 
     def _unit_speech(self, unit, decorator):
         self.print(message='{}: {}'.format(unit.name,
@@ -66,10 +65,11 @@ class Log(object):
                         message='Is over...')
 
     def round_start(self, round):
-        self.print('Round: {}'.format(round))
+        self.print('\n<<< Round {} >>>'.format(round), Styles.BOLD)
 
     def end_fight(self):
         self.print('Fight ended!')
 
-    def dice_status(self, value):
-        self.print('\tDice result: {}'.format(value))
+    def dice_status(self, unit, value):
+        self.print('\t {}: dice result {}'.format(unit.name,
+                                                  value))

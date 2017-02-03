@@ -37,11 +37,11 @@ class ArenaOneByOne(object):
         self._round = 1
 
         self._log.player(self._hero)
-        self._log.player(self._enemy)
+        self._log.enemy(self._enemy)
 
     def _unit_move(self, unit, attacked):
         dice_value = self._dice.throw()
-        self._log.dice_status(dice_value)
+        self._log.dice_status(unit, dice_value)
         self._attack(unit, attacked, dice_value, self._log)
 
     def move(self):
